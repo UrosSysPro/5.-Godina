@@ -14,8 +14,8 @@ public class Main extends Application {
     int w,h;
     @Override
     public void start(Stage primaryStage) throws Exception{
-        w=60;
-        h=60;
+        w=30;
+        h=30;
 
         Image image=new Image("slika.jpg",w,h,false,false);
         printImage(image);
