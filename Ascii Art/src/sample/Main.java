@@ -17,7 +17,7 @@ public class Main extends Application {
         w=30;
         h=30;
 
-        Image image=new Image("slika.jpg",w,h,false,false);
+        Image image=new Image("images.png",w,h,false,false);
         printImage(image);
         ImageView view=new ImageView(image);
         view.setFitHeight(300);
