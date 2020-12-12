@@ -1,6 +1,5 @@
 package sample;
 
-<<<<<<< HEAD
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -52,8 +51,4 @@ public class Player {
 //            context.rect(x,y,w,h);
 //            context.fill();
         }
-
-=======
-public class Player {
->>>>>>> 347ea68a7d4babf9b24ef34107a7fa539628d601
 }

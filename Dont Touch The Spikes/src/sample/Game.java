@@ -1,6 +1,5 @@
 package sample;
 
-<<<<<<< HEAD
 import javafx.scene.canvas.Canvas;
 
 public class Game {
@@ -35,7 +34,4 @@ public class Game {
         gameOver=player.udaraUZid(w);
         gameOver=player.udaraUPrepreku(prepreke,w,brojPrepreka);
     }
-=======
-public class Game {
->>>>>>> 347ea68a7d4babf9b24ef34107a7fa539628d601
 }

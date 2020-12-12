@@ -13,7 +13,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-<<<<<<< HEAD
         Game game=new Game(300,600);
         game.update();
         game.draw();
@@ -29,8 +28,6 @@ public class Main extends Application {
             }
         });
 
-        Pane pane=new Pane(game.canvas);
-        Scene scene=new Scene(pane);
 
         primaryStage.setTitle("Hello World");
         primaryStage.setOnCloseRequest(windowEvent -> {
@@ -39,18 +36,11 @@ public class Main extends Application {
         primaryStage.setOnShown(windowEvent ->{
             t.start();
         });
-=======
-        Canvas canvas=new Canvas(600,600);
-        Prepreka p=new Prepreka(40,0,30,30);
-        p.draw(canvas);
-        p=new Prepreka(30,1,30,30);
-        p.draw(canvas);
-        Pane pane=new Pane(canvas);
+        Pane pane=new Pane(game.canvas);
         Scene scene=new Scene(pane);
 
         primaryStage.setTitle("Hello World");
 
->>>>>>> 347ea68a7d4babf9b24ef34107a7fa539628d601
         primaryStage.setScene(scene);
         primaryStage.show();
     }
