@@ -6,12 +6,10 @@ import javafx.scene.canvas.GraphicsContext;
 public class Prepreka {
     public int y;
     public int strana;
-    public int w,h;
-    public Prepreka(int y,int strana,int w,int h){
+    public static int w,h;
+    public Prepreka(int y,int strana){
         this.y=y;
         this.strana=strana;
-        this.w=w;
-        this.h=h;
     }
     public void draw(Canvas canvas){
         GraphicsContext context=canvas.getGraphicsContext2D();

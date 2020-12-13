@@ -8,7 +8,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-
 public class Main extends Application {
 
     @Override
@@ -18,10 +17,11 @@ public class Main extends Application {
         game.draw();
         Thread t=new Thread(() -> {
             while (!game.gameOver){
+                game.input();
                 game.update();
                 game.draw();
                 try {
-                    Thread.sleep(1000/20);
+                    Thread.sleep(1000/60);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -38,6 +38,9 @@ public class Main extends Application {
         });
         Pane pane=new Pane(game.canvas);
         Scene scene=new Scene(pane);
+        scene.setOnKeyPressed(keyEvent -> {
+            game.lastPressedKey=keyEvent.getCode();
+        });
 
         primaryStage.setTitle("Hello World");
 
