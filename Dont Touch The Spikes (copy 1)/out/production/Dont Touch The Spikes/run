@@ -1,0 +1,1 @@
+java --module-path /home/karaleic/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml sample.App
