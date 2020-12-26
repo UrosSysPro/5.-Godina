@@ -22,7 +22,6 @@ public class App extends Application {
         scene.setOnKeyPressed(keyEvent -> {
             controller.game.lastPressedKey=keyEvent.getCode();
         });
-
         stage.setScene(scene);
         stage.show();
     }
