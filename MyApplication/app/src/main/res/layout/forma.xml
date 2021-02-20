@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/GameMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#4CAF50"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/PlayBtn"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:includeFontPadding="false"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:text='"Play"'
+            android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/OptionsBtn"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:includeFontPadding="false"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:text="Options"
+            android:textSize="36sp" />
+    </LinearLayout>
+</FrameLayout>
