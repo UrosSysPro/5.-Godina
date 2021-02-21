@@ -9,14 +9,28 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-public class MainActivity extends AppCompatActivity {
+import java.io.File;
+import java.io.FileWriter;
 
+public class MainActivity extends AppCompatActivity {
+    public void upisiUfajl(){
+        try {
+            FileWriter writer=new FileWriter("text.txt");
+            writer.write("hello");
+            writer.close();
+            File file=new File("text.txt");
+            System.out.println(file.getPath());
+        }catch (Exception e){
+
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Game game=new Game(this);
-
+        upisiUfajl();
         LayoutInflater inflater=(LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
 
         final FrameLayout frameLayout=(FrameLayout) inflater.inflate(R.layout.forma,null);

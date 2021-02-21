@@ -125,4 +125,16 @@ public class Player {
 //        canvas.drawCircle(x,y,r,boja);
         canvas.drawRect(x-r,y-r,x+r,y+r,boja);
     }
+
+    public boolean  stigaoDoCilja(Zid cilj){
+
+        if(!(x+r<cilj.x||x>cilj.x+cilj.w)){
+            return true;
+        }
+        if(!(y+r<cilj.y||y>cilj.y+cilj.h)){
+            return true;
+        }
+
+        return false;
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,6 +10,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -23,6 +25,10 @@ public class Game extends View {
     public SensorEventListener eventListener;
     public ValueAnimator timer;
     public long staroVreme;
+    public Zid[][] levels;
+    public int trenutniNivo;
+
+    public Zid cilj;
 
     public Button playBtn;
     public Button optionsBtn;
@@ -30,8 +36,14 @@ public class Game extends View {
 
     public Game(Context context){
         super(context);
-        w=720;
-        h=1000;
+        DisplayMetrics displayMetrics=new DisplayMetrics();
+
+        ((Activity) getContext())
+                .getWindowManager()
+                .getDefaultDisplay()
+                .getMetrics(displayMetrics);
+        w=displayMetrics.widthPixels;
+        h=displayMetrics.heightPixels;
 
         staroVreme=0;
 
@@ -40,8 +52,10 @@ public class Game extends View {
         Zid.boja=new Paint();
         Zid.boja.setColor(Color.BLUE);
         Zid.boja.setStyle(Paint.Style.FILL);
+        trenutniNivo=0;
         zidovi=ucitajZidove();
 
+        cilj=new Zid(700,1000,50,50);
 
         sensorManager=(SensorManager) context.getSystemService(context.SENSOR_SERVICE);
         sensor=sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -86,8 +100,34 @@ public class Game extends View {
         z[6]=new Zid(4*w/7,6*h/8,2*w/7,1*h/8);
         return z;
     }
+    public Zid[] ucitajZidove(int i){
+        return  levels[i];
+    }
+    public void ucitajNivoe(){
+        levels=new Zid[3][];
+        levels[0]=new Zid[2];
+        levels[0][0]=new Zid(0,0,500,50);
+        levels[0][1]=new Zid(0,100,500,50);
+
+        levels[1]=new Zid[2];
+        levels[1][0]=new Zid(0,0,500,50);
+        levels[1][1]=new Zid(0,100,500,50);
+
+        levels[2]=new Zid[2];
+        levels[2][0]=new Zid(0,0,500,50);
+        levels[2][1]=new Zid(0,100,500,50);
+    }
     public void update(){
         player.update(w,h,zidovi);
+        if(player.stigaoDoCilja(cilj)){
+            //resetujemo poziciju igraca
+
+            //ucita se novi nivo
+//            trenutniNivo++;
+//            zidovi=ucitajZidove(trenutniNivo);
+//            cilj=new Zid();
+
+        }
     }
 
     @Override
@@ -97,5 +137,8 @@ public class Game extends View {
         for(int i=0;i<zidovi.length;i++){
             zidovi[i].draw(canvas);
         }
+        Zid.boja.setColor(Color.rgb(200,150,150));
+        canvas.drawRect(cilj.x,cilj.y,cilj.x+cilj.w,cilj.y+cilj.h,Zid.boja);
+        Zid.boja.setColor(Color.BLACK);
     }
 }
