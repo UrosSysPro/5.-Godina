@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,15 +14,20 @@ import java.io.File;
 import java.io.FileWriter;
 
 public class MainActivity extends AppCompatActivity {
-    public void upisiUfajl(){
+    public void upisiUfajl(Context context){
         try {
-            FileWriter writer=new FileWriter("text.txt");
-            writer.write("hello");
-            writer.close();
-            File file=new File("text.txt");
-            System.out.println(file.getPath());
+            for(int i=0;i<5;i++) {
+                File file = new File(context.getFilesDir(), "level" + i + ".txt");
+                FileWriter writer = new FileWriter(file);
+                writer.write("0 0\n");
+                writer.write("50 50 50 50\n");
+                writer.write("70 80 100 50\n");
+                writer.write("50 50 50 50\n");
+                writer.write("50 50 50 50");
+                writer.close();
+            }
         }catch (Exception e){
-
+            System.out.println("greska");
         }
 
     }
@@ -30,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Game game=new Game(this);
-        upisiUfajl();
+        upisiUfajl(this);
         LayoutInflater inflater=(LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
 
         final FrameLayout frameLayout=(FrameLayout) inflater.inflate(R.layout.forma,null);

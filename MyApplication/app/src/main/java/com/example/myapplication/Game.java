@@ -15,6 +15,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import java.io.File;
+import java.util.Scanner;
+
 
 public class Game extends View {
     public int w,h;
@@ -25,7 +28,7 @@ public class Game extends View {
     public SensorEventListener eventListener;
     public ValueAnimator timer;
     public long staroVreme;
-    public Zid[][] levels;
+    public Level[] levels;
     public int trenutniNivo;
 
     public Zid cilj;
@@ -100,22 +103,34 @@ public class Game extends View {
         z[6]=new Zid(4*w/7,6*h/8,2*w/7,1*h/8);
         return z;
     }
-    public Zid[] ucitajZidove(int i){
-        return  levels[i];
-    }
-    public void ucitajNivoe(){
-        levels=new Zid[3][];
-        levels[0]=new Zid[2];
-        levels[0][0]=new Zid(0,0,500,50);
-        levels[0][1]=new Zid(0,100,500,50);
+//    public Zid[] ucitajZidove(int i){
+//        return  levels[i];
+//    }
+    public void ucitajNivoe(Context context){
+        try {
+            for(int i=0;i<5;i++){
+                File file=new File(context.getFilesDir(),"level"+i+".txt");
+                Scanner scanner=new Scanner(file);
+                String[] red= scanner.nextLine().split(" ");
+                player.x=Integer.parseInt(red[0]);
+                player.y=Integer.parseInt(red[1]);
+                red=scanner.nextLine().split(" ");
+                int x=Integer.parseInt(red[0]);
+                int y=Integer.parseInt(red[1]);
+                int w=Integer.parseInt(red[2]);
+                int h=Integer.parseInt(red[3]);
+                Zid cilj=new Zid(x,y,w,h);
+                while(scanner.hasNextLine()){
+                    x=Integer.parseInt(red[0]);
+                    y=Integer.parseInt(red[1]);
+                    w=Integer.parseInt(red[2]);
+                    h=Integer.parseInt(red[3]);
 
-        levels[1]=new Zid[2];
-        levels[1][0]=new Zid(0,0,500,50);
-        levels[1][1]=new Zid(0,100,500,50);
+                }
+            }
+        }catch (Exception e) {
 
-        levels[2]=new Zid[2];
-        levels[2][0]=new Zid(0,0,500,50);
-        levels[2][1]=new Zid(0,100,500,50);
+        }
     }
     public void update(){
         player.update(w,h,zidovi);
