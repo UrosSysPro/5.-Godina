@@ -44,12 +44,19 @@ public class Quad {
         nizKvadrata[2]=new Quad(  x,  y+h/2,w/2,h/2);
         nizKvadrata[3]=new Quad(x+w/2,y+h/2,w/2,h/2);
         for(int i=0;i<niz.size();i++){
-            for(int j=0;j<nizKvadrata.length;i++){
+            for(int j=0;j<nizKvadrata.length;j++){
                 nizKvadrata[j].add(niz.get(i));
             }
         }
     }
     private boolean pripada(Tacka t){
         return x<t.x && x+w>t.x && y<t.y && y+h>t.y;
+    }
+
+    public boolean preklapaSaKrugom(int x,int y,int r){
+        if(x-r>this.x+w||x+r<this.x||y-r>this.y+h||y+r<this.y){
+            return false;
+        }
+        return true;
     }
 }
